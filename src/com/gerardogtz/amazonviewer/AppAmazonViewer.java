@@ -1,7 +1,9 @@
 package com.gerardogtz.amazonviewer;
 
+import java.text.SimpleDateFormat;
 import java.util.*;
 
+import com.gerardogtz.makereport.Report;
 import com.gerardogtz.model.*;
 
 
@@ -16,7 +18,6 @@ public class AppAmazonViewer {
 	public static void showMenu() {
 		int exit = 0;
 		do {
-			Scanner sc = new Scanner(System.in);
 			
 			System.out.println("***** WELCOME AMAZON VIEWER *****");
 			System.err.println("");
@@ -26,10 +27,10 @@ public class AppAmazonViewer {
 			System.out.println("3. Books");
 			System.out.println("4. Magazines");
 			System.out.println("5. Report");
-			System.out.println("6. Rport today");
+			System.out.println("6. Report today");
 			System.out.println("0. Exit");
 			
-			//int response = Integer.valueOf(sc.nextLine());
+			Scanner sc = new Scanner(System.in);
 			int response = sc.nextInt();
 			
 			switch (response) {
@@ -58,16 +59,15 @@ public class AppAmazonViewer {
 
 			default:
 				System.out.println("Not available option");
-				exit  = 1;
 				break;
 			}
 			
 		}while(exit != 0);
 	}
-
+	
+	static ArrayList<Movie> movies = Movie.makeMoviesList();
 	public static void showMovies() {
 		int exit = 1;
-		ArrayList<Movie> movies = Movie.makeMoviesList();
 		
 		do {
 			System.out.println("\n*****  MOVIES  *****\n");
@@ -76,26 +76,29 @@ public class AppAmazonViewer {
 				System.out.println(i+1 + ". " + movies.get(i).getTitle() + " Watched: "+ movies.get(i).isViewed() );
 			}
 			
-			System.out.println("0. Back to the options\n");
+			System.out.println("\n0. Back to the options\n");
 			
 			Scanner sc = new Scanner(System.in);
 			int response = sc.nextInt();
 			
 			if(response == 0) {
+				exit = 0;
 				showMenu();
 			}
 			
-			Movie movieSelected = movies.get(response-1);
-			movieSelected.setViewed(true);
-			Date dateI = movieSelected.startToSee(new Date());
-			
-			for(int i = 0; i < 100000; i++) {
-				System.out.println("..........");
+			if(response > 0) {
+				Movie movieSelected = movies.get(response-1);
+				movieSelected.setViewed(true);
+				Date dateI = movieSelected.startToSee(new Date());
+				
+				for(int i = 0; i < 100000; i++) {
+					System.out.println("..........");
+				}
+				
+				movieSelected.stopToSee(dateI, new Date());
+				System.out.println("You watched: " + movieSelected);
+				System.out.println("for " + movieSelected.getTimeViewed() + " milliseconds");
 			}
-			
-			movieSelected.stopToSee(dateI, new Date());
-			System.out.println("You watched: " + movieSelected);
-			System.out.println("for " + movieSelected.getTimeViewed() + " milliseconds");
 			
 		}while(exit != 0);
 	}
@@ -119,7 +122,8 @@ public class AppAmazonViewer {
 			if(response == 0) {
 				showMenu();
 			}
-			Serie serieSelected =series.get(response-1);
+			
+			Serie serieSelected = series.get(response-1);
 			serieSelected.setViewed(true);
 			showChapters(serieSelected.getChapters());
 			
@@ -177,10 +181,38 @@ public class AppAmazonViewer {
 	}
 	
 	public static void makeReport() {
+		Report report = new Report();
+		report.setNameFile("report");
+		report.setExtension("txt");
+		report.setTitle("***** WATCHED ****");
+		String contentReport = "";
 		
+		for (Movie movie : movies) {
+			if (movie.getIsViewed()) {
+				contentReport += movie.toString() + "\n";
+			}
+		}
+		
+		report.setContent(contentReport);
+		report.makeReport();
 	}
 	
 	public static void makeReport(Date date) {
+		SimpleDateFormat df = new SimpleDateFormat("yyyy-MM-dd");
+		String dateString = df.format(date);
+		Report report = new Report();
 		
+		report.setNameFile("reporte" + dateString);
+		report.setExtension("txt");
+		report.setTitle(":: VISTOS ::");
+		String contentReport = "";
+		
+		for (Movie movie : movies) {
+			if (movie.getIsViewed()) {
+				contentReport += movie.toString() + "\n";
+			}
+		}
+		report.setContent(contentReport);
+		report.makeReport();
 	}
 }

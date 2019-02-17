@@ -63,6 +63,10 @@ public class Film implements IVisualizable {
 		return viewed ? "Yes" : "No";
 	}
 	
+	public boolean getIsViewed() {
+		return viewed;
+	}
+	
 	public void setViewed(boolean viewed) {
 		this.viewed = viewed;
 	}
