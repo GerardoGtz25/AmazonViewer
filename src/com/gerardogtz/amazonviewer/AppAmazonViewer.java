@@ -8,8 +8,11 @@ import com.gerardogtz.model.Movie;
 public class AppAmazonViewer {
 
 	public static void main(String[] args) {
+		
+		Movie movie = new Movie("Coco", "Animation", (short)2017);
+		movie.showData();
 
-		showMenu();
+		// showMenu();
 		
 
 	}
