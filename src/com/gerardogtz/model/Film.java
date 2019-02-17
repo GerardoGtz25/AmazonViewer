@@ -1,6 +1,8 @@
 package com.gerardogtz.model;
 
-public class Film {
+import java.util.Date;
+
+public class Film implements IVisualizable {
 
 	private String title;
 	private String genre;
@@ -63,6 +65,18 @@ public class Film {
 	
 	public void setViewed(boolean viewed) {
 		this.viewed = viewed;
+	}
+
+	@Override
+	public Date startToSee(Date dateI) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void stopToSee(Date dateI, Date dateF) {
+		// TODO Auto-generated method stub
+		
 	}
 	
 	

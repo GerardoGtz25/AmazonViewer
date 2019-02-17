@@ -9,9 +9,7 @@ public class Serie extends Film {
 	public Serie(String title, String genre, String creator, int duration, int id, int seasonQuantity,
 			Chapter[] chapters) {
 		super(title, genre, creator, duration);
-		this.id = id;
 		this.seasonQuantity = seasonQuantity;
-		this.chapters = chapters;
 	}
 
 	public int getId() {
@@ -34,16 +32,15 @@ public class Serie extends Film {
 		this.chapters = chapters;
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-
-	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		return  "\n :: SERIE ::" + 
+				"\n Title: " + getTitle() +
+				"\n Genero: " + getGenre() + 
+				"\n Year: " + getYear() + 
+				"\n Creator: " + getCreator() +
+				"\n Duration: " + getDuration();
+	}
 	
 }

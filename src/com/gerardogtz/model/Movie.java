@@ -1,6 +1,8 @@
 package com.gerardogtz.model;
 
-public class Movie extends Film {
+import java.util.Date;
+
+public class Movie extends Film implements IVisualizable {
 	
 	private int id;
 	private int timeViewed;
@@ -39,7 +41,16 @@ public class Movie extends Film {
 		//System.out.println("Year: " + this.year);
 	}
 	
+	@Override
+	public Date startToSee(Date dateI) {
+		return dateI;
+	}
 	
+	@Override
+	public void stopToSee(Date dateI, Date dateF) {
+	  int result = dateF.getTime() > dateI.getTime() ? (int) (dateF.getTime() - dateI.getTime()) / 1000 : 0;
+	  this.setTimeViewed(result);
+	}
 	
 	
 	
