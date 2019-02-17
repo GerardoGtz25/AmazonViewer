@@ -62,10 +62,5 @@ public class Movie extends Film implements IVisualizable {
 		
 		return movies;
 	}
-	
-	
-	
-	
-	
-	
+
 }

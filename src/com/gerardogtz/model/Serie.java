@@ -8,9 +8,10 @@ public class Serie extends Film {
 	private int seasonQuantity;
 	private ArrayList<Chapter> chapters;
 	
-	public Serie(String title, String genre, String creator, int duration, int id, int seasonQuantity,
-			Chapter[] chapters) {
+	public Serie(String title, String genre, String creator, int duration, int seasonQuantity,
+			ArrayList<Chapter> chapters) {
 		super(title, genre, creator, duration);
+		this.chapters = chapters;
 		this.seasonQuantity = seasonQuantity;
 	}
 
@@ -39,10 +40,20 @@ public class Serie extends Film {
 		// TODO Auto-generated method stub
 		return  "\n :: SERIE ::" + 
 				"\n Title: " + getTitle() +
-				"\n Genero: " + getGenre() + 
+				"\n Genre: " + getGenre() + 
 				"\n Year: " + getYear() + 
 				"\n Creator: " + getCreator() +
 				"\n Duration: " + getDuration();
+	}
+	
+	public static ArrayList<Serie> makeSeriesList() {
+		ArrayList<Serie> series = new ArrayList();
+		
+		for (int i = 1; i <= 5; i++) {
+			series.add(new Serie("Serie "+i, "genre "+i, "creador "+i, 1200, 5, Chapter.makeChaptersList()));	
+		}
+		
+		return series;
 	}
 	
 }

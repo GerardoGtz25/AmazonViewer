@@ -1,5 +1,6 @@
 package com.gerardogtz.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Chapter extends Movie {
@@ -43,8 +44,18 @@ public class Chapter extends Movie {
 	
 	@Override
 	public void stopToSee(Date dateI, Date dateF) {
-	  int result = dateF.getTime() > dateI.getTime() ? (int) (dateF.getTime() - dateI.getTime()) / 1000 : 0;
+	  int result = dateF.getTime() > dateI.getTime() ? (int) (dateF.getTime() - dateI.getTime()) : 0;
 	  this.setTimeViewed(result);
+	}
+	
+	public static ArrayList<Chapter> makeChaptersList() {
+		ArrayList<Chapter> chapters = new ArrayList();
+		
+		for (int i = 1; i <= 5; i++) {
+			chapters.add(new Chapter("Capituo "+i, "genero "+i, "creator" +i, 45, (short)(2017+i), i));
+		}
+		
+		return chapters;
 	}
 	
 	
