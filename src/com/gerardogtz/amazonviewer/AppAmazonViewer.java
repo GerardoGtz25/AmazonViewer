@@ -1,6 +1,6 @@
 package com.gerardogtz.amazonviewer;
 
-import java.util.Scanner;
+import java.util.*;
 
 import com.gerardogtz.model.Movie;
 
@@ -19,16 +19,17 @@ public class AppAmazonViewer {
 		do {
 			Scanner sc = new Scanner(System.in);
 			
-			System.out.println("BIENVENIDOS AMAZON VIEWER");
+			System.out.println("::::WELCOME AMAZON VIEWER::::");
 			System.err.println("");
-			System.out.println("Selecciona el numero de la opción deseada");
+			System.out.println("SELECT AN OPTION");
 			System.out.println("1. Movies");
 			System.out.println("2. Series");
 			System.out.println("3. Books");
 			System.out.println("4. Magazines");
+			System.out.println("5. Report");
+			System.out.println("6. Rport today");
 			System.out.println("0. Exit");
 			
-			//leer la respuesta del usuario
 			int entrada = sc.nextInt();
 			
 			switch (entrada) {
@@ -45,10 +46,10 @@ public class AppAmazonViewer {
 				showMagazines();
 				break;
 			case 5:
-				
+				makeReport();
 				break;
 			case 6:
-				
+				makeReport(new Date());
 				break;
 			case 0:
 				System.out.println("saliste del sistema!");
@@ -102,5 +103,13 @@ public class AppAmazonViewer {
 			System.out.println();
 			System.out.println(":: MAGAZINES ::");
 		}while(exit != 0);
+	}
+	
+	public static void makeReport() {
+		
+	}
+	
+	public static void makeReport(Date date) {
+		
 	}
 }
