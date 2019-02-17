@@ -1,90 +1,49 @@
 package com.gerardogtz.model;
 
-public class Serie {
+public class Serie extends Film {
 	
 	private int id;
-	private String title;
-	private String genre;
-	private String creator;
-	private int duration;
-	private short year;
-	private boolean viewed;
-	private int timeViewed;
+	private int seasonQuantity;
+	private Chapter chapters[];
 	
-	//chapters[]
-	
-	public Serie(String title, String genre, int duration) {
-		super();
-		this.title = title;
-		this.genre = genre;
-		this.duration = duration;
+	public Serie(String title, String genre, String creator, int duration, int id, int seasonQuantity,
+			Chapter[] chapters) {
+		super(title, genre, creator, duration);
+		this.id = id;
+		this.seasonQuantity = seasonQuantity;
+		this.chapters = chapters;
 	}
 
 	public int getId() {
 		return id;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public int getSeasonQuantity() {
+		return seasonQuantity;
 	}
 
-	public String getTitle() {
-		return title;
+	public void setSeasonQuantity(int seasonQuantity) {
+		this.seasonQuantity = seasonQuantity;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+	public Chapter[] getChapters() {
+		return chapters;
 	}
 
-	public String getGenre() {
-		return genre;
-	}
-
-	public void setGenre(String genre) {
-		this.genre = genre;
-	}
-
-	public String getCreator() {
-		return creator;
-	}
-
-	public void setCreator(String creator) {
-		this.creator = creator;
-	}
-
-	public int getDuration() {
-		return duration;
-	}
-
-	public void setDuration(int duration) {
-		this.duration = duration;
-	}
-
-	public short getYear() {
-		return year;
-	}
-
-	public void setYear(short year) {
-		this.year = year;
-	}
-
-	public boolean isViewed() {
-		return viewed;
-	}
-
-	public void setViewed(boolean viewed) {
-		this.viewed = viewed;
-	}
-
-	public int getTimeViewed() {
-		return timeViewed;
-	}
-
-	public void setTimeViewed(int timeViewed) {
-		this.timeViewed = timeViewed;
+	public void setChapters(Chapter[] chapters) {
+		this.chapters = chapters;
 	}
 	
 	
+	
+	
+	
+	
+	
+	
+	
+	
+
 	
 	
 }

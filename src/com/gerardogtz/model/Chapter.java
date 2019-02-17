@@ -1,20 +1,37 @@
 package com.gerardogtz.model;
 
-public class Chapter {
+public class Chapter extends Movie {
 	
 	private int id;
-	private String title;
-	private int duration;
-	private short year;
-	private boolean viewed;
-	private int timeViewed;
 	private int sessionNumber;
 	
-	public Chapter(String title, int duration, short year) {
-		super();
-		this.title = title;
-		this.duration = duration;
-		this.year = year;
+	public Chapter(String title, String genre, String creator, int duration, short year, int sessionNumber) {
+		super(title, genre, creator, duration, year);
+		this.setSessionNumber(sessionNumber);
 	}
+	
+	@Override
+	public int getId() {
+		// TODO Auto-generated method stub
+		return this.getId();
+	}
+
+	public int getSessionNumber() {
+		return sessionNumber;
+	}
+
+	public void setSessionNumber(int sessionNumber) {
+		this.sessionNumber = sessionNumber;
+	}
+	
+	
+	
+	
+	
+	
+	
+
+	
+	
 	
 }
