@@ -36,12 +36,6 @@ public class Movie extends Film implements IVisualizable {
 				"\n Duration: " + getDuration();
 	}
 	
-	public void showData() {
-		//System.out.println("Title: " + this.title);
-		//System.out.println("Genre: " + this.genre);
-		//System.out.println("Year: " + this.year);
-	}
-	
 	@Override
 	public Date startToSee(Date dateI) {
 		return dateI;
@@ -61,6 +55,19 @@ public class Movie extends Film implements IVisualizable {
 		}
 		
 		return movies;
+	}
+	
+	public void view() {
+		setViewed(true);
+		Date dateI = startToSee(new Date());
+		
+		for(int i = 0; i < 100000; i++) {
+			System.out.println("..........");
+		}
+		
+		stopToSee(dateI, new Date());
+		System.out.println("You watched: " + toString());
+		System.out.println("for " + getTimeViewed() + " milliseconds");
 	}
 
 }

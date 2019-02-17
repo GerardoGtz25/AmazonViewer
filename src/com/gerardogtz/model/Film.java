@@ -2,7 +2,7 @@ package com.gerardogtz.model;
 
 import java.util.Date;
 
-public class Film implements IVisualizable {
+public abstract class Film implements IVisualizable {
 
 	private String title;
 	private String genre;
@@ -82,6 +82,8 @@ public class Film implements IVisualizable {
 		// TODO Auto-generated method stub
 		
 	}
+	
+	public abstract void view();
 	
 	
 

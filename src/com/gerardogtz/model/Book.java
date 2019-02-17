@@ -1,5 +1,6 @@
 package com.gerardogtz.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Book extends Publication implements IVisualizable {
@@ -65,6 +66,33 @@ public class Book extends Publication implements IVisualizable {
 	public void stopToSee(Date dateI, Date dateF) {
 	  int result = dateF.getTime() > dateI.getTime() ? (int) (dateF.getTime() - dateI.getTime()) / 1000 : 0;
 	  this.setTimeReaded(result);
+	}
+	
+	public static ArrayList<Book> makeBookList() {
+		ArrayList<Book> books = new ArrayList();
+		String[] authors = new String[3];
+		for (int i = 0; i < 3; i++) {
+			authors[i] = "author "+i;
+		}
+		for (int i = 1; i <= 5; i++) {
+			books.add(new Book("Book " + i, new Date(), "editorial " + i, authors));
+		}
+		
+		return books;
+	}
+	
+	public void view() {
+		setReaded(true);
+		Date dateI = startToSee(new Date());
+		
+		for (int i = 0; i < 100000; i++) {
+			System.out.println("..........");
+		}
+		
+		stopToSee(dateI, new Date());
+		System.out.println();
+		System.out.println("Leíste: " + toString());
+		System.out.println("Por: " + getTimeReaded() + " milisegundos");
 	}
 	
 	

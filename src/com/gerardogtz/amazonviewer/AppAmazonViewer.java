@@ -10,7 +10,14 @@ import com.gerardogtz.model.*;
 public class AppAmazonViewer {
 
 	public static void main(String[] args) {
-
+		
+		/** Puede haber polimorfismo a nivel de clases 
+		Clase abstracta no se puede instanciar al menos 
+		que sea a partir de una clase hija */
+		
+		// Film film = new Movie("", "", "", 1, (short)2017);
+		// film.view();
+		
 		showMenu();
 		
 	}
@@ -66,6 +73,7 @@ public class AppAmazonViewer {
 	}
 	
 	static ArrayList<Movie> movies = Movie.makeMoviesList();
+	
 	public static void showMovies() {
 		int exit = 1;
 		
@@ -88,16 +96,7 @@ public class AppAmazonViewer {
 			
 			if(response > 0) {
 				Movie movieSelected = movies.get(response-1);
-				movieSelected.setViewed(true);
-				Date dateI = movieSelected.startToSee(new Date());
-				
-				for(int i = 0; i < 100000; i++) {
-					System.out.println("..........");
-				}
-				
-				movieSelected.stopToSee(dateI, new Date());
-				System.out.println("You watched: " + movieSelected);
-				System.out.println("for " + movieSelected.getTimeViewed() + " milliseconds");
+				movieSelected.view();
 			}
 			
 		}while(exit != 0);
@@ -124,7 +123,6 @@ public class AppAmazonViewer {
 			}
 			
 			Serie serieSelected = series.get(response-1);
-			serieSelected.setViewed(true);
 			showChapters(serieSelected.getChapters());
 			
 		}while(exit !=0);
@@ -150,26 +148,45 @@ public class AppAmazonViewer {
 				showSeries();
 			}
 			
-			Chapter chapterSelected = chaptersOfSerieSelected.get(response-1);
-			chapterSelected.setViewed(true);
-			Date dateI = chapterSelected.startToSee(new Date());
-			
-			for (int i = 0; i < 100000; i++) {
-				System.out.println("..........");
+			if(response > 0) {
+				Chapter chapterSelected = chaptersOfSerieSelected.get(response-1);
+				chapterSelected.view();
 			}
 			
-			chapterSelected.stopToSee(dateI, new Date());
-			System.out.println("Viste: " + chapterSelected);
-			System.out.println("Por: " + chapterSelected.getTimeViewed() + " milisegundos");
 		}while(exit !=0);
 	}
 	
+	static ArrayList<Book> books= Book.makeBookList();
 	public static void showBooks() {
-		int exit = 0;
+		int exit = 1;
+		
 		do {
 			System.out.println();
 			System.out.println(":: BOOKS ::");
-		}while(exit != 0);
+			System.out.println();
+			
+			for (int i = 0; i < books.size(); i++) { //1. Book 1
+				System.out.println(i+1 + ". " + books.get(i).getTitle() + " Leído: " + books.get(i).isReaded());
+			}
+			
+			System.out.println("0. Regresar al Menu");
+			System.out.println();
+			
+			//int response = AmazonUtil.validateUserResponseMenu(0, books.size());
+			Scanner sc = new Scanner(System.in);
+			int response = Integer.valueOf(sc.nextLine());
+			
+			if(response == 0) {
+				exit = 0;
+				showMenu();
+			}
+			
+			if(response > 0) {
+				Book bookSelected = books.get(response-1);
+				bookSelected.view();
+			}
+			
+		}while(exit !=0);
 	}
 	
 	public static void showMagazines() {
