@@ -1,5 +1,6 @@
 package com.gerardogtz.model;
 
+import java.util.ArrayList;
 import java.util.Date;
 
 public class Movie extends Film implements IVisualizable {
@@ -29,7 +30,7 @@ public class Movie extends Film implements IVisualizable {
 		// TODO Auto-generated method stub
 		return  "\n :: MOVIE ::" + 
 				"\n Title: " + getTitle() +
-				"\n Genero: " + getGenre() + 
+				"\n Genre: " + getGenre() + 
 				"\n Year: " + getYear() + 
 				"\n Creator: " + getCreator() +
 				"\n Duration: " + getDuration();
@@ -48,9 +49,21 @@ public class Movie extends Film implements IVisualizable {
 	
 	@Override
 	public void stopToSee(Date dateI, Date dateF) {
-	  int result = dateF.getTime() > dateI.getTime() ? (int) (dateF.getTime() - dateI.getTime()) / 1000 : 0;
+	  int result = dateF.getTime() > dateI.getTime() ? (int) (dateF.getTime() - dateI.getTime()) : 0;
 	  this.setTimeViewed(result);
 	}
+	
+	public static ArrayList<Movie> makeMoviesList() {
+		ArrayList<Movie> movies = new ArrayList();
+		
+		for (int i = 1; i <= 5; i++) {
+			movies.add(new Movie("Movie " + i, "Genero: " + i, "Creador " + i, 120+i, (short)(2017+i)));
+		}
+		
+		return movies;
+	}
+	
+	
 	
 	
 	

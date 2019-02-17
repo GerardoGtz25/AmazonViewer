@@ -9,12 +9,12 @@ public class AppAmazonViewer {
 
 	public static void main(String[] args) {
 		
-		Movie movie = new Movie("Coco", "Animation", "Lee Unkrich", 120, (short)2017);
-		movie.showData();
+		// Movie movie = new Movie("Coco", "Animation", "Lee Unkrich", 120, (short)2017);
+		// movie.showData();
 		
-		System.out.println(movie.toString());
+		// System.out.println(movie.toString());
 
-		// showMenu();
+		showMenu();
 		
 
 	}
@@ -35,9 +35,14 @@ public class AppAmazonViewer {
 			System.out.println("6. Rport today");
 			System.out.println("0. Exit");
 			
-			int entrada = sc.nextInt();
+			//int response = Integer.valueOf(sc.nextLine());
+			int response = sc.nextInt();
 			
-			switch (entrada) {
+			switch (response) {
+			case 0:
+				System.out.println("You has gone out of the system");
+				exit = 0;
+				break;
 			case 1:
 				showMovies();
 				break;
@@ -56,13 +61,9 @@ public class AppAmazonViewer {
 			case 6:
 				makeReport(new Date());
 				break;
-			case 0:
-				System.out.println("saliste del sistema!");
-				exit = 0;
-				break;
 
 			default:
-				System.out.println("Opción no disponible");
+				System.out.println("Not available option");
 				exit  = 1;
 				break;
 			}
@@ -71,10 +72,35 @@ public class AppAmazonViewer {
 	}
 
 	public static void showMovies() {
-		int exit = 0;
+		int exit = 1;
+		ArrayList<Movie> movies = Movie.makeMoviesList();
+		
 		do {
 			System.out.println();
 			System.out.println(":: MOVIES ::");
+			System.out.println();
+			
+			for(int i = 0; i < movies.size(); i++) {
+				System.out.println(i+1 + ". " + movies.get(i).getTitle() + " Watched: "+ movies.get(i).isViewed() );
+			}
+			
+			System.out.println("0. Back to the options\n");
+			
+			Scanner sc = new Scanner(System.in);
+			int response = sc.nextInt();
+			
+			Movie movieSelected = movies.get(response-1);
+			movieSelected.setViewed(true);
+			Date dateI = movieSelected.startToSee(new Date());
+			
+			for(int i = 0; i < 100000; i++) {
+				System.out.println("..........");
+			}
+			
+			movieSelected.stopToSee(dateI, new Date());
+			System.out.println("You watched: " + movieSelected);
+			System.out.println("for " + movieSelected.getTimeViewed());
+			
 		}while(exit != 0);
 	}
 	

@@ -59,8 +59,8 @@ public class Film implements IVisualizable {
 		this.year = year;
 	}
 	
-	public boolean isViewed() {
-		return viewed;
+	public String isViewed() {
+		return viewed ? "Yes" : "No";
 	}
 	
 	public void setViewed(boolean viewed) {
